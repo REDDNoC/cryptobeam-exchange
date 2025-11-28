@@ -1,3 +1,4 @@
+require('dotenv').config();
 const service = {
   name: 'Cryptobeam Exchange Core',
   repo: 'cryptobeam-exchange',

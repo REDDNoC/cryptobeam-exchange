@@ -40,8 +40,9 @@ if (require.main === module) {
     process.exit(0);
   }
   const port = process.env.PORT || 3000;
-  fastify.listen({ port, host: '0.0.0.0' }).then(() => {
-    console.log(`Service ${service.name} listening on ${port}`);
+  const host = process.env.HOST || '127.0.0.1';
+  fastify.listen({ port, host }).then(() => {
+    console.log(`Service  listening on :`);
   }).catch((err) => {
     console.error(err);
     process.exit(1);

@@ -42,6 +42,15 @@ function planWorkflow(input) {
  * ------------------------- */
 fastify.get('/health', async () => health());
 fastify.get("/ready", async () => ({ ...health(), ready: true }));
+fastify.get("/metrics", async (_req, reply) => {
+  reply.type("text/plain; version=0.0.4");
+  return [
+    "# HELP cryptobeam_exchange_up Service is up (1 if process is running)",
+    "# TYPE cryptobeam_exchange_up gauge",
+    "cryptobeam_exchange_up 1",
+  ].join("\n") + "\n";
+});
+
 
 
 fastify.post('/plan', async (request) =>

@@ -9,7 +9,8 @@
     "dev": "node src/index.js",
     "lint": "node --check src/index.js",
     "test": "node src/index.js --self-test",
-    "build": "echo 'no build step yet'"
+    "build": "echo 'no build step yet'",
+    "smoke": "bash scripts/smoke.sh"
   },
   "dependencies": {
     "dotenv": "^16.6.1",

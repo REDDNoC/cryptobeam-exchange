@@ -1,3 +1,6 @@
+require("dotenv").config();
+const { config } = require("./config");
+
 require('dotenv').config();
 
 const fastify = require('fastify')({
@@ -38,6 +41,8 @@ function planWorkflow(input) {
  * Routes
  * ------------------------- */
 fastify.get('/health', async () => health());
+fastify.get("/ready", async () => ({ ...health(), ready: true }));
+
 
 fastify.post('/plan', async (request) =>
   planWorkflow(request.body || {})
@@ -57,7 +62,7 @@ if (require.main === module) {
   const host = process.env.HOST || '127.0.0.1';
 
   fastify
-    .listen({ port, host })
+    .listen({ port: config.port, host: config.bindHost })
     .then(() => {
       console.log(
         `Service ${service.name} listening on http://${host}:${port}`
